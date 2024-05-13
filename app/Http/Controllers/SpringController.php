@@ -16,7 +16,11 @@ class SpringController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Springs/Index');
+        $springs = Spring::select('id', 'name', 'prefecture_id', 'city', 'quality_id', 'simple_description', 'photo')->get();
+
+        return Inertia::render('Springs/Index', [
+            'springs' => $springs
+        ]);
     }
 
     /**
