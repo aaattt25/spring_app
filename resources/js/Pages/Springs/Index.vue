@@ -26,7 +26,11 @@ defineProps({
                             <!-- <div class="p-4 lg:w-1/2"> -->
                             <div class="p-4">
                               <div class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
-                                <img alt="team" class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4" src="https://dummyimage.com/200x200">
+                                <!-- <img alt="team" class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4" src="https://dummyimage.com/200x200"> -->
+                                <!-- <div class="w-200 h-200 fill-current text-gray-500" > -->
+                                <div class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4">
+                                  <img src="/images/no_image.png">
+                                </div>
                                 <div class="flex-grow sm:pl-8">
                                   <p>{{ spring.prefecture_id }}　{{ spring.city }}</p>
                                   <h2 class="title-font font-medium text-lg text-gray-900">{{ spring.name }}</h2>

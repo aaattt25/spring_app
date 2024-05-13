@@ -39,9 +39,8 @@ return new class extends Migration
             $table->string('business_hours');
             $table->string('holiday');
             $table->text('efficacy');
-            $table->text('indication');
             $table->boolean('has_water_drawing_place');
-            $table->string('water_drawing_fee');
+            $table->string('water_drawing_fee')->nullable();
             $table->timestamps();
         });
     }

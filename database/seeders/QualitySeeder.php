@@ -57,7 +57,7 @@ class QualitySeeder extends Seeder
                 'sort_id' => 10,
             ],
             [
-                'name' => '放射能泉',
+                'name' => '放射能泉（ラドン・ラジウム）',
                 'sort_id' => 11,
             ],
             [
