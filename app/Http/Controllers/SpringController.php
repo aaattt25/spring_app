@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSpringRequest;
 use App\Http\Requests\UpdateSpringRequest;
+use App\Models\Quality;
+use App\Models\Prefecture;
 use App\Models\Spring;
 use Inertia\Inertia;
 
@@ -17,9 +19,12 @@ class SpringController extends Controller
     public function index()
     {
         $springs = Spring::select('id', 'name', 'prefecture_id', 'city', 'quality_id', 'simple_description', 'photo')->get();
-
+        $qualities = Quality::select('id', 'name')->get();
+        $prefectures = Prefecture::select('id', 'name')->get();
         return Inertia::render('Springs/Index', [
-            'springs' => $springs
+            'springs' => $springs,
+            'qualities' => $qualities,
+            'prefectures' => $prefectures
         ]);
     }
 

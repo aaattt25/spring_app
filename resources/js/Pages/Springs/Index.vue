@@ -3,7 +3,9 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
 
 defineProps({
-  springs: Array
+  springs: Array,
+  qualities: Array,
+  prefectures: Array
 })
 </script>
 
@@ -32,9 +34,9 @@ defineProps({
                                   <img src="/images/no_image.png">
                                 </div>
                                 <div class="flex-grow sm:pl-8">
-                                  <p>{{ spring.prefecture_id }}　{{ spring.city }}</p>
+                                  <p>{{ prefectures[spring.prefecture_id - 1].name }}　{{ spring.city }}</p>
                                   <h2 class="title-font font-medium text-lg text-gray-900">{{ spring.name }}</h2>
-                                  <h3 class="text-gray-500 mb-3">泉質：{{ spring.quality_id }}</h3>
+                                  <h3 class="text-gray-500 mb-3">泉質：{{ qualities[spring.quality_id - 1].name }}</h3>
                                   <p class="mb-4">{{ spring.simple_description }}</p>
                                 </div>
                               </div>
