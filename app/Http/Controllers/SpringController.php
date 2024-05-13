@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreSpringRequest;
 use App\Http\Requests\UpdateSpringRequest;
 use App\Models\Spring;
+use Inertia\Inertia;
 
 class SpringController extends Controller
 {
@@ -15,7 +16,7 @@ class SpringController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Springs/Index');
     }
 
     /**
