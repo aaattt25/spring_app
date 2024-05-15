@@ -18,10 +18,10 @@ class SpringSeeder extends Seeder
         DB::table('springs')->insert([
             [
                 'name' => '湯泉郷 温泉館 湯招花',
-                'kana' => 'とうせんきょう おんせんかん とうしょうか',
-                'tel' => 'TEL 0952-64-2683（本館）/ 0952-64-2360（-HANARE- 離れ） FAX 0952-64-2833',
+                'kana' => 'ｵﾝｾﾝｷｮｳ ｵﾝｾﾝｶﾝ ﾄｳｼｮｳｶ',
+                'tel' => '0952642683',
                 'url' => 'https://toshoka.net/index.html',
-                'postcode' => 8400512,
+                'postcode' => '8400512',
                 'region_id' => 9,
                 'prefecture_id' => 41,
                 'city' => '佐賀市',
@@ -61,10 +61,10 @@ class SpringSeeder extends Seeder
             ],
             [
                 'name' => '古湯温泉 ＯＮＣＲＩ / おんくり',
-                'kana' => 'ふるゆおんせん　おんくり',
-                'tel' => 'TEL ：0952-51-8111 FAX：0952-51-8112',
+                'kana' => 'ﾌﾙﾕｵﾝｾﾝ ｵﾝｸﾘ',
+                'tel' => '0952518111',
                 'url' => 'https://oncri.com/',
-                'postcode' => 8400501,
+                'postcode' => '8400501',
                 'region_id' => 9,
                 'prefecture_id' => 41,
                 'city' => '佐賀市',
@@ -76,14 +76,15 @@ class SpringSeeder extends Seeder
                 'has_restaurant' => 1,
                 'can_drop_by' => 1,
                 'is_inn' => 1,
-                'fee' => '料金：大人1,300円（税込み）、小学生650円（税込み）、未就学児童 無料
+                'fee' => '
+                料金：大人1,300円（税込み）、小学生650円（税込み）、未就学児童 無料
                 その他：レンタルバスタオル／200円（税込み）、フェイスタオル／無料',
                 'is_flowing_from_source' => 0,
                 'has_bedrock_bath' => 0,
                 'has_sauna' => 1,
                 'has_parking' => 1,
                 'business_hours' => 'ご入浴時間：10：00～20：00',
-                'holiday'=> '不定休',
+                'holiday'=> '毎週 火曜日・水曜日 　※祝日の場合は営業',
                 'efficacy' => '神経痛、筋肉痛、関節痛、五十肩、運動麻痺、関節のこわばり、打ち身、くじき、慢性消化器病、痔疾、冷え性、病後回復期、疲労回復、健康増進、 通風、動脈硬化症、高血圧症、慢性胆嚢炎、胆石症、慢性皮膚病、 慢性婦人病など',
                 'has_water_drawing_place' => 0,
                 'water_drawing_fee' => null,

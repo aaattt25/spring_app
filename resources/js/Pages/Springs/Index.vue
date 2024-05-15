@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 
 defineProps({
   springs: Array,
@@ -21,8 +21,12 @@ defineProps({
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
+                      <div v-if="$page.props.flash.message" class="bg-blue-300 text-white p-4">{{ $page.props.flash.message }}</div>
 
                       <section class="text-gray-600 body-font">
+                        <div class="flex pl-4 my-4 lg:w-2/3 w-full mx-auto">
+                            <Link class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded" as="button" :href="route('springs.create')">温泉登録</Link>
+                        </div>
                         <div class="container px-5 py-24 mx-auto">
                           <div v-for="spring in springs" :key="spring.id" class="flex flex-wrap -m-4">
                             <!-- <div class="p-4 lg:w-1/2"> -->
