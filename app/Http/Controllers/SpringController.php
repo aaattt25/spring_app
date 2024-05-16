@@ -97,7 +97,10 @@ class SpringController extends Controller
      */
     public function show(Spring $spring)
     {
-        //
+        // dd($spring);
+        return Inertia::render('Springs/Show', [
+            'spring' => $spring
+        ]);
     }
 
     /**
@@ -108,7 +111,7 @@ class SpringController extends Controller
      */
     public function edit(Spring $spring)
     {
-        //
+
     }
 
     /**
