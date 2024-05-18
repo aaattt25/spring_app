@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
 import { reactive } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
 
@@ -58,7 +58,7 @@ const storeSpring = () => {
                     <div class="p-6 text-gray-900">
 
                       <section class="text-gray-600 body-font relative">
-                        <form @submit.prevent="storeSpring">
+                        <form @submit.prevent="storeSpring" enctype="multipart/form-data">
                           <div class="container px-5 py-8 mx-auto">
                             <div class="lg:w-1/2 md:w-2/3 mx-auto">
                               <div class="flex flex-wrap -m-2">
@@ -251,6 +251,13 @@ const storeSpring = () => {
                                     <input type="text" id="water_drawing_fee" name="water_drawing_fee" v-model="form.water_drawing_fee" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                   </div>
                                 </div>
+
+                                <!-- <div class="p-2 w-full">
+                                  <div class="relative">
+                                    <label for="photo" class="leading-7 text-sm text-gray-600">画像</label>
+                                    <input type="file" id="photo" name="photo" @input="form.photo = $event.target.files[0]" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                  </div>
+                                </div> -->
 
                                 <div class="p-2 w-full">
                                   <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Button</button>

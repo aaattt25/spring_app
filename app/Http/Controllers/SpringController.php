@@ -65,7 +65,7 @@ class SpringController extends Controller
             'city' =>$request->city,
             'address' =>$request->address,
             'quality_id' =>$request->quality_id,
-            'photo' =>$request->null,   // 後で作る
+            'photo' =>null,   // 後で作る
             'simple_description' =>$request->simple_description,
             'detail_description' =>$request->detail_description,
             'has_restaurant' =>$request->has_restaurant,

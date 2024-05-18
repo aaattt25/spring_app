@@ -32,7 +32,9 @@ defineProps({
                             <div class="p-4">
                               <div class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
                                 <div class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4">
-                                  <img src="/images/no_image.png">
+
+                                  <img v-if="spring.photo === null" src="/images/no_image.png">
+                                  <img v-else src="/images/no_image.png">
                                 </div>
                                 <div class="flex-grow sm:pl-8">
                                   <p>{{ prefectures[spring.prefecture_id - 1].name }}　{{ spring.city }}</p>
