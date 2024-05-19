@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 
 defineProps({
   spring: Object,
@@ -24,6 +24,10 @@ defineProps({
                   <div class="p-6 text-gray-900">
 
                     <div class="max-w-screen-lg h-auto mx-auto bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+
+											<Link class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded" as="button" :href="route('springs.edit', {spring: spring.id })">編集する</Link>
+
+
                       <img class="rounded-t-lg " src="/images/no_image.png" alt="" />
                       <div class="p-5">
                         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ spring.kana }}</p>
@@ -33,22 +37,6 @@ defineProps({
 
                         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                           <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                              <!-- <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
-                                  <tr>
-                                      <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-                                          Product name
-                                      </th>
-                                      <th scope="col" class="px-6 py-3">
-                                          Color
-                                      </th>
-                                      <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-                                          Category
-                                      </th>
-                                      <th scope="col" class="px-6 py-3">
-                                          Price
-                                      </th>
-                                  </tr>
-                              </thead> -->
                               <tbody>
                                   <tr class="border-b border-gray-200 dark:border-gray-700">
                                       <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">

@@ -65,7 +65,7 @@ class SpringController extends Controller
             'city' =>$request->city,
             'address' =>$request->address,
             'quality_id' =>$request->quality_id,
-            'photo' =>null,   // 後で作る
+            'photo' =>$request->null,   // 後で作る
             'simple_description' =>$request->simple_description,
             'detail_description' =>$request->detail_description,
             'has_restaurant' =>$request->has_restaurant,
@@ -111,7 +111,10 @@ class SpringController extends Controller
      */
     public function edit(Spring $spring)
     {
-
+        // dd($spring);
+        return Inertia::render('Springs/Edit', [
+            'spring' => $spring
+        ]);
     }
 
     /**
@@ -123,7 +126,13 @@ class SpringController extends Controller
      */
     public function update(UpdateSpringRequest $request, Spring $spring)
     {
-        //
+        // $spring->name = $request->name;
+        $spring->name = $request->name;
+        $spring->save();
+
+        return to_route('springs.index')->with([
+            'message' => '更新しました。'
+        ]);
     }
 
     /**
@@ -134,6 +143,6 @@ class SpringController extends Controller
      */
     public function destroy(Spring $spring)
     {
-        //
+
     }
 }
