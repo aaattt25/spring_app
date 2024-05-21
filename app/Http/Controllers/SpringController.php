@@ -54,6 +54,10 @@ class SpringController extends Controller
      */
     public function store(StoreSpringRequest $request)
     {
+        $file = request()->file('photo');
+        $file_name = is_null($file) ? null : $file->getClientOriginalName();
+        // $file_name = $file->getClientOriginalName();
+
         Spring::create([
             'name' =>$request->name,
             'kana' =>$request->kana,
@@ -65,7 +69,7 @@ class SpringController extends Controller
             'city' =>$request->city,
             'address' =>$request->address,
             'quality_id' =>$request->quality_id,
-            'photo' =>$request->null,   // 後で作る
+            'photo' =>$request->$file_name,
             'simple_description' =>$request->simple_description,
             'detail_description' =>$request->detail_description,
             'has_restaurant' =>$request->has_restaurant,

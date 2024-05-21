@@ -16,11 +16,8 @@ use App\Http\Controllers\SpringController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::post('fileupload',function(){
-    dd(request()->all());
-});
-Route::resource('springs', SpringController::class)->middleware(['auth', 'verified']);
 
+Route::resource('springs', SpringController::class)->middleware(['auth', 'verified']);
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [

@@ -31,7 +31,7 @@ return new class extends Migration
             $table->boolean('has_restaurant');
             $table->boolean('can_drop_by');
             $table->boolean('is_inn');
-            $table->text('fee');
+            $table->text('fee')->nullable();
             $table->boolean('is_flowing_from_source');
             $table->boolean('has_bedrock_bath');
             $table->boolean('has_sauna');
