@@ -6,7 +6,7 @@ use App\Http\Requests\StoreSpringRequest;
 use App\Http\Requests\UpdateSpringRequest;
 use App\Models\Quality;
 use App\Models\Prefecture;
-use App\Models\Region;
+// use App\Models\Region;
 use App\Models\Spring;
 use Inertia\Inertia;
 
@@ -38,7 +38,7 @@ class SpringController extends Controller
     {
         $prefectures = Prefecture::select('id', 'name')->get();
         $qualities = Quality::select('id', 'name')->get();
-        $regions = Region::select('id', 'name')->get();
+        // $regions = Region::select('id', 'name')->get();
 
         return Inertia::render('Springs/Create', [
             'prefectures' => $prefectures,
@@ -64,7 +64,7 @@ class SpringController extends Controller
             'tel' =>$request->tel,
             'url' =>$request->url,
             'postcode' =>$request->postcode,
-            'region_id' =>1, // 後で変更する
+            // 'region_id' =>1,
             'prefecture_id' =>$request->prefecture_id,
             'city' =>$request->city,
             'address' =>$request->address,

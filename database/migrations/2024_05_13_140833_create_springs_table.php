@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('kana');
-            $table->string('tel')->unique();
-            $table->string('url');
+            $table->string('tel');
+            $table->string('url')->nullable();;
             $table->string('postcode');
-            $table->integer('region_id')->constrained()->onUpdate('cascade');
+            // $table->integer('region_id')->constrained()->onUpdate('cascade');
             $table->integer('prefecture_id')->constrained()->onUpdate('cascade');
             $table->string('city');
             $table->string('address');
