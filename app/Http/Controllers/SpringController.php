@@ -155,6 +155,11 @@ class SpringController extends Controller
      */
     public function destroy(Spring $spring)
     {
+        $spring->delete();
 
+        return to_route('springs.index')
+        ->with([
+            'message' => '削除しました。',
+        ]);
     }
 }

@@ -279,7 +279,7 @@ const storeSpring = () => {
                                 <div v-if="errors.water_drawing_fee" class="text-red-600 text-sm">{{ errors.water_drawing_fee }}</div>
                                 <div class="p-2 w-full">
                                   <div class="relative">
-                                    <label for="photo" class="leading-7 text-sm text-gray-600">画像</label>
+                                    <label for="photo" class="leading-7 text-sm text-gray-600">画像（アップロード可能なファイル拡張子：jpg,jpeg,png）</label>
                                     <input type="file" id="photo" name="photo"  placeholder="100円/10L" @input="form.photo = $event.target.files[0]" class="w-full rounded py-1 px-3 leading-8">
                                   </div>
                                 </div>
