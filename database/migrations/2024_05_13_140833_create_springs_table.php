@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('tel');
             $table->string('url')->nullable();;
             $table->string('postcode');
-            $table->integer('region_id')->constrained()->onUpdate('cascade');
+            // $table->integer('region_id')->constrained()->onUpdate('cascade');
             $table->integer('prefecture_id')->constrained()->onUpdate('cascade');
             $table->string('city');
             $table->string('address');

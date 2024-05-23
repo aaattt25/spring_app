@@ -6,9 +6,10 @@ use App\Http\Requests\StoreSpringRequest;
 use App\Http\Requests\UpdateSpringRequest;
 use App\Models\Quality;
 use App\Models\Prefecture;
-// use App\Models\Region;
+use App\Models\Region;
 use App\Models\Spring;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Storage;
 
 class SpringController extends Controller
 {
@@ -55,8 +56,12 @@ class SpringController extends Controller
     public function store(StoreSpringRequest $request)
     {
         $file = request()->file('photo');
-        $file_name = is_null($file) ? null : $file->getClientOriginalName();
-        // $file_name = $file->getClientOriginalName();
+        // dd(request()->file('photo')->getClientOriginalName());
+        // $file_name = is_null($file) ? null : $file->getClientOriginalName();
+
+                // $file_name = $file->getClientOriginalName();
+        $file_name = request()->file('photo')->getClientOriginalName();  // ファイル名とれた
+        Storage::putFileAs('public/', $file, $file_name);
 
         Spring::create([
             'name' =>$request->name,
@@ -69,7 +74,7 @@ class SpringController extends Controller
             'city' =>$request->city,
             'address' =>$request->address,
             'quality_id' =>$request->quality_id,
-            'photo' =>$request->$file_name,
+            'photo' =>$file_name,
             'simple_description' =>$request->simple_description,
             'detail_description' =>$request->detail_description,
             'has_restaurant' =>$request->has_restaurant,
@@ -105,7 +110,8 @@ class SpringController extends Controller
         $quality_name = $spring->quality->name;
         return Inertia::render('Springs/Show', [
             'spring' => $spring,
-            'quality_name' => $quality_name
+            'quality_name' => $quality_name,
+            'photo_url' => asset('/storage/' . $spring->photo)
         ]);
     }
 
