@@ -38,4 +38,14 @@ class Spring extends Model
         'has_water_drawing_place',
         'water_drawing_fee'
     ];
+
+    public function quality()
+    {
+        return $this->belongsTo(Quality::class);
+    }
+
+    public function prefecture()
+    {
+        return $this->belongsTo(Prefecture::class);
+    }
 }

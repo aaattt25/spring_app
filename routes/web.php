@@ -19,7 +19,6 @@ use App\Http\Controllers\SpringController;
 
 Route::resource('springs', SpringController::class)->middleware(['auth', 'verified']);
 
-
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),

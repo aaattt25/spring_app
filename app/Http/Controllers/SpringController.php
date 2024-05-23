@@ -9,6 +9,7 @@ use App\Models\Prefecture;
 use App\Models\Region;
 use App\Models\Spring;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Storage;
 
 class SpringController extends Controller
 {
@@ -38,7 +39,7 @@ class SpringController extends Controller
     {
         $prefectures = Prefecture::select('id', 'name')->get();
         $qualities = Quality::select('id', 'name')->get();
-        $regions = Region::select('id', 'name')->get();
+        // $regions = Region::select('id', 'name')->get();
 
         return Inertia::render('Springs/Create', [
             'prefectures' => $prefectures,
@@ -54,18 +55,26 @@ class SpringController extends Controller
      */
     public function store(StoreSpringRequest $request)
     {
+        $file = request()->file('photo');
+        // dd(request()->file('photo')->getClientOriginalName());
+        // $file_name = is_null($file) ? null : $file->getClientOriginalName();
+
+                // $file_name = $file->getClientOriginalName();
+        $file_name = request()->file('photo')->getClientOriginalName();  // ファイル名とれた
+        Storage::putFileAs('public/', $file, $file_name);
+
         Spring::create([
             'name' =>$request->name,
             'kana' =>$request->kana,
             'tel' =>$request->tel,
             'url' =>$request->url,
             'postcode' =>$request->postcode,
-            'region_id' =>1, // 後で変更する
+            // 'region_id' =>1,
             'prefecture_id' =>$request->prefecture_id,
             'city' =>$request->city,
             'address' =>$request->address,
             'quality_id' =>$request->quality_id,
-            'photo' =>$request->null,   // 後で作る
+            'photo' =>$file_name,
             'simple_description' =>$request->simple_description,
             'detail_description' =>$request->detail_description,
             'has_restaurant' =>$request->has_restaurant,
@@ -98,8 +107,11 @@ class SpringController extends Controller
     public function show(Spring $spring)
     {
         // dd($spring);
+        $quality_name = $spring->quality->name;
         return Inertia::render('Springs/Show', [
-            'spring' => $spring
+            'spring' => $spring,
+            'quality_name' => $quality_name,
+            'photo_url' => asset('/storage/' . $spring->photo)
         ]);
     }
 
@@ -111,7 +123,10 @@ class SpringController extends Controller
      */
     public function edit(Spring $spring)
     {
-
+        // dd($spring);
+        return Inertia::render('Springs/Edit', [
+            'spring' => $spring
+        ]);
     }
 
     /**
@@ -123,7 +138,13 @@ class SpringController extends Controller
      */
     public function update(UpdateSpringRequest $request, Spring $spring)
     {
-        //
+        // $spring->name = $request->name;
+        $spring->name = $request->name;
+        $spring->save();
+
+        return to_route('springs.index')->with([
+            'message' => '更新しました。'
+        ]);
     }
 
     /**
@@ -134,6 +155,6 @@ class SpringController extends Controller
      */
     public function destroy(Spring $spring)
     {
-        //
+
     }
 }
