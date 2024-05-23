@@ -135,7 +135,7 @@ class SpringController extends Controller
     {
         dd($request->all());
         $file_name = request()->file('photo')->getClientOriginalName();  // ファイル名とれた
-        Storage::putFileAs('public/', $file, $file_name);
+        // Storage::putFileAs('public/', $file, $file_name);
         $spring->name = $request->name;
         $spring->save();
 
@@ -152,6 +152,8 @@ class SpringController extends Controller
      */
     public function destroy(Spring $spring)
     {
+        // Storage::delete($spring->photo);
+        Storage::delete('public/' . $spring->photo);
         $spring->delete();
 
         return to_route('springs.index')
