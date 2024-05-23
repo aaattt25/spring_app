@@ -13,4 +13,9 @@ class Prefecture extends Model
     {
         return $this->hasMany(Spring::class);
     }
+
+    public function region()
+    {
+        return $this->belongsTo(Region::class);
+    }
 }
