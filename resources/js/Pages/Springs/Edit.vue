@@ -9,6 +9,7 @@ const props = defineProps({
 })
 
 const form = reactive({
+// const form = useForm({
   id: props.spring.id,
   name: props.spring.name,
   // kana: props.spring.kana,
@@ -75,9 +76,10 @@ const updateSpring = (id) => {
                                   </div>
                                 </div>
 
-                                <!-- <h1>画像Upload</h1>
-                                <p><input type="file" @change="fileSelected" /></p>
-                                <button @click="fileUpload">アップロード</button> -->
+                                <img v-if="spring.photo === null" class="rounded-t-lg " src="/images/no_image.png" alt="" />
+                                <img v-else :src="'/storage/' + spring.photo" alt="" lass="rounded-t-lg" />
+
+
                                 <input type="file" @input="form.photo = $event.target.files[0]" />
                                 <div class="p-2 w-full">
                                   <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">更新する</button>

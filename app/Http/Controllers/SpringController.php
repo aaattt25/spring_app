@@ -56,10 +56,6 @@ class SpringController extends Controller
     public function store(StoreSpringRequest $request)
     {
         $file = request()->file('photo');
-        // dd(request()->file('photo')->getClientOriginalName());
-        // $file_name = is_null($file) ? null : $file->getClientOriginalName();
-
-                // $file_name = $file->getClientOriginalName();
         $file_name = request()->file('photo')->getClientOriginalName();  // ファイル名とれた
         Storage::putFileAs('public/', $file, $file_name);
 
@@ -123,7 +119,6 @@ class SpringController extends Controller
      */
     public function edit(Spring $spring)
     {
-        // dd($spring);
         return Inertia::render('Springs/Edit', [
             'spring' => $spring
         ]);
@@ -138,7 +133,9 @@ class SpringController extends Controller
      */
     public function update(UpdateSpringRequest $request, Spring $spring)
     {
-        // $spring->name = $request->name;
+        dd($request->all());
+        $file_name = request()->file('photo')->getClientOriginalName();  // ファイル名とれた
+        Storage::putFileAs('public/', $file, $file_name);
         $spring->name = $request->name;
         $spring->save();
 

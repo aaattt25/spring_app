@@ -1,8 +1,6 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, useForm } from '@inertiajs/vue3';
-import { reactive } from 'vue'
-import { Inertia } from '@inertiajs/inertia'
+import { Head, useForm, router } from '@inertiajs/vue3';
 
 defineProps({
   errors: Object,
@@ -40,7 +38,7 @@ const form = useForm({
 })
 
 const storeSpring = () => {
-  Inertia.post('/springs', form)
+  router.post('/springs', form)
 }
 </script>
 

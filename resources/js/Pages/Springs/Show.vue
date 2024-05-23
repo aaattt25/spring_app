@@ -34,7 +34,7 @@ const deleteConfirm = (id) => {
               <Link class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded" as="button" :href="route('springs.edit', {spring: spring.id })">編集する</Link>
 
               <img v-if="spring.photo === null" class="rounded-t-lg " src="/images/no_image.png" alt="" />
-              <img v-if="photo_url" class="rounded-t-lg " :src="photo_url" alt="" />
+              <img v-else class="rounded-t-lg " :src="photo_url" alt="" />
               <div class="p-5">
                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ spring.kana }}</p>
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ spring.name }}</h5>
