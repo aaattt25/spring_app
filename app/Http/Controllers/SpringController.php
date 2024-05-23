@@ -102,8 +102,10 @@ class SpringController extends Controller
     public function show(Spring $spring)
     {
         // dd($spring);
+        $quality_name = $spring->quality->name;
         return Inertia::render('Springs/Show', [
-            'spring' => $spring
+            'spring' => $spring,
+            'quality_name' => $quality_name
         ]);
     }
 

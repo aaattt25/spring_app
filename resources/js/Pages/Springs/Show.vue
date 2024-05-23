@@ -4,6 +4,7 @@ import { Head, Link } from '@inertiajs/vue3';
 
 defineProps({
   spring: Object,
+  quality_name: String,
 })
 </script>
 
@@ -64,13 +65,14 @@ defineProps({
                           泉質
                         </th>
                         <td class="px-6 py-4">
-                          {{ spring.quality_id }}
+                          {{ quality_name }}
                         </td>
                         <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
                           源泉掛け流し
                         </td>
                         <td class="px-6 py-4">
-                          {{ spring.is_flowing_from_source }}
+                          <span v-if="spring.is_flowing_from_source === 0">x</span>
+                          <span v-if="spring.is_flowing_from_source === 1">○</span>
                         </td>
                       </tr>
                       <tr>
@@ -94,13 +96,15 @@ defineProps({
                           食事処
                         </th>
                         <td class="px-6 py-4">
-                          {{ spring.has_restaurant }}
+                          <span v-if="spring.has_restaurant === 0">x</span>
+                          <span v-if="spring.has_restaurant === 1">○</span>
                         </td>
                         <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
                           駐車場
                         </td>
                         <td class="px-6 py-4">
-                          {{ spring.has_parking }}
+                          <span v-if="spring.has_parking === 0">x</span>
+                          <span v-if="spring.has_parking === 1">○</span>
                         </td>
                       </tr>
                       <tr>
@@ -108,13 +112,15 @@ defineProps({
                           宿泊
                         </th>
                         <td class="px-6 py-4">
-                          {{ spring.is_inn }}
+                          <span v-if="spring.has_parking === 0">x</span>
+                          <span v-if="spring.has_parking === 1">○</span>
                         </td>
                         <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
                           立ち寄り湯
                         </td>
                         <td class="px-6 py-4">
-                          {{ spring.is_inn }}
+                          <span v-if="spring.is_inn === 0">x</span>
+                          <span v-if="spring.is_inn === 1">○</span>
                         </td>
                       </tr>
                       <tr>
@@ -122,13 +128,15 @@ defineProps({
                           岩盤浴
                         </th>
                         <td class="px-6 py-4">
-                          {{ spring.has_bedrock_bath }}
+                          <span v-if="spring.has_bedrock_bath === 0">x</span>
+                          <span v-if="spring.has_bedrock_bath === 1">○</span>
                         </td>
                         <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
                           サウナ
                         </td>
                         <td class="px-6 py-4">
-                          {{ spring.has_sauna }}
+                          <span v-if="spring.has_sauna === 0">x</span>
+                          <span v-if="spring.has_sauna === 1">○</span>
                         </td>
                       </tr>
                       <tr>
@@ -150,7 +158,8 @@ defineProps({
                           水汲み場
                         </th>
                         <td class="px-6 py-4">
-                          {{ spring.has_water_drawing_place }}
+                          <span v-if="spring.has_water_drawing_place === 0">x</span>
+                          <span v-if="spring.has_water_drawing_place === 1">○</span>
                         </td>
                         <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
                           水汲み料金

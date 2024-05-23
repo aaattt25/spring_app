@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Prefecture extends Model
 {
     use HasFactory;
+
+    public function springs()
+    {
+        return $this->hasMany(Spring::class);
+    }
 }
