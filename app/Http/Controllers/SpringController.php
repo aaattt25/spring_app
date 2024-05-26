@@ -10,6 +10,7 @@ use App\Models\Region;
 use App\Models\Spring;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class SpringController extends Controller
 {
@@ -102,10 +103,11 @@ class SpringController extends Controller
      */
     public function show(Spring $spring)
     {
-        // dd($spring);
+        $prefecture = Prefecture::find($spring->prefecture_id);
         $quality_name = $spring->quality->name;
         return Inertia::render('Springs/Show', [
             'spring' => $spring,
+            'prefecture' => $prefecture->name,
             'quality_name' => $quality_name,
             'photo_url' => asset('/storage/' . $spring->photo)
         ]);
@@ -119,8 +121,13 @@ class SpringController extends Controller
      */
     public function edit(Spring $spring)
     {
+        $prefectures = Prefecture::select('id', 'name')->get();
+        $qualities = Quality::select('id', 'name')->get();
+
         return Inertia::render('Springs/Edit', [
-            'spring' => $spring
+            'spring' => $spring,
+            'prefectures' => $prefectures,
+            'qualities' => $qualities,
         ]);
     }
 
@@ -133,15 +140,36 @@ class SpringController extends Controller
      */
     public function update(UpdateSpringRequest $request, Spring $spring)
     {
-        dd($request->all());
-        $file_name = request()->file('photo')->getClientOriginalName();  // ファイル名とれた
-        // Storage::putFileAs('public/', $file, $file_name);
         $spring->name = $request->name;
+        $spring->kana = $request->kana;
+        $spring->tel = $request->tel;
+        $spring->url = $request->url;
+        $spring->postcode = $request->postcode;
+        $spring->prefecture_id = $request->prefecture_id;
+        $spring->city = $request->city;
+        $spring->address= $request->address;
+        $spring->quality_id = $request->quality_id;
+        $spring->simple_description = $request->simple_description;
+        $spring->detail_description = $request->detail_description;
+        $spring->has_restaurant = $request->has_restaurant;
+        $spring->can_drop_by = $request->can_drop_by;
+        $spring->is_inn = $request->is_inn;
+        $spring->fee = $request->fee;
+        $spring->is_flowing_from_source = $request->is_flowing_from_source;
+        $spring->has_bedrock_bath = $request->has_bedrock_bath;
+        $spring->has_sauna = $request->has_sauna;
+        $spring->has_parking = $request->has_parking;
+        $spring->business_hours = $request->business_hours;
+        $spring->holiday = $request->holiday;
+        $spring->efficacy = $request->efficacy;
+        $spring->has_water_drawing_place = $request->has_water_drawing_place;
+        $spring->water_drawing_fee = $request->water_drawing_fee;
+
         $spring->save();
 
         return to_route('springs.index')->with([
-            'message' => '更新しました。'
-        ]);
+        'message' => '更新しました。'
+    ]);
     }
 
     /**

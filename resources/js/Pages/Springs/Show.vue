@@ -6,6 +6,7 @@ defineProps({
   spring: Object,
   quality_name: String,
   photo_url: String,
+  prefecture: String
 })
 
 const deleteConfirm = (id) => {
@@ -28,11 +29,9 @@ const deleteConfirm = (id) => {
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
           <div class="p-6 text-gray-900">
+            <Link class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 my-3 focus:outline-none hover:bg-indigo-600 rounded" as="button" :href="route('springs.edit', {spring: spring.id })">編集する</Link>
 
             <div class="max-w-screen-lg h-auto mx-auto bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-
-              <Link class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded" as="button" :href="route('springs.edit', {spring: spring.id })">編集する</Link>
-
               <img v-if="spring.photo === null" class="rounded-t-lg " src="/images/no_image.png" alt="" />
               <img v-else class="rounded-t-lg " :src="photo_url" alt="" />
               <div class="p-5">
@@ -48,7 +47,7 @@ const deleteConfirm = (id) => {
                             住所
                         </th>
                         <td class="px-6 py-4">
-                          〒{{spring.postcode }}　{{ spring.region_id }}{{ spring.city }}{{ spring.address }}
+                          〒{{spring.postcode }}　{{ prefecture.name }}{{ spring.city }}{{ spring.address }}
                         </td>
                       </tr>
                       <tr class="border-b border-gray-200 dark:border-gray-700">
@@ -178,7 +177,7 @@ const deleteConfirm = (id) => {
                     </tbody>
                   </table>
                 </div>
-                <button @click="deleteConfirm(spring.id)">削除する</button>
+                <button @click="deleteConfirm(spring.id)" class="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 my-3 focus:outline-none hover:bg-red-600 rounded">削除する</button>
               </div>
             </div>
           </div>

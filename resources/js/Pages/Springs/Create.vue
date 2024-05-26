@@ -197,7 +197,7 @@ const storeSpring = () => {
                                 <div class="p-2 w-full">
                                   <div class="relative">
                                     <span class="bg-red-800 rounded text-white font-bold text-xs p-1 mr-2">必須</span>
-<input type="radio" id="is_flowing_from_source0" name="is_flowing_from_source" v-model="form.is_flowing_from_source" value="0">
+                                    <input type="radio" id="is_flowing_from_source0" name="is_flowing_from_source" v-model="form.is_flowing_from_source" value="0">
                                     <label for="is_flowing_from_source0"class="ml-2 mr-4">源泉掛け流しでない</label>
                                     <input type="radio" id="is_flowing_from_source1" name="is_flowing_from_source" v-model="form.is_flowing_from_source" value="1">
                                     <label for="is_flowing_from_source1"class="ml-2 mr-4">源泉掛け流しである</label>
