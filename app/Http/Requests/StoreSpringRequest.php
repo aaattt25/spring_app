@@ -34,6 +34,7 @@ class StoreSpringRequest extends FormRequest
             'city' => ['required'],
             'address' => ['required','max:100'],
             'quality_id' => ['required'],
+            'photo' => 'image|mimes:jpg,jpeg,png|max:8192',  // 画像、サイズ
             'simple_description' => ['required','max:255'],
             'detail_description' => ['required','max:1000'],
             'has_restaurant' => ['required'],

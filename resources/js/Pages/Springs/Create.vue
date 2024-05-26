@@ -1,8 +1,6 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, useForm } from '@inertiajs/vue3';
-import { reactive } from 'vue'
-import { Inertia } from '@inertiajs/inertia'
+import { Head, useForm, router } from '@inertiajs/vue3';
 
 defineProps({
   errors: Object,
@@ -40,7 +38,7 @@ const form = useForm({
 })
 
 const storeSpring = () => {
-  Inertia.post('/springs', form)
+  router.post('/springs', form)
 }
 </script>
 
@@ -199,7 +197,7 @@ const storeSpring = () => {
                                 <div class="p-2 w-full">
                                   <div class="relative">
                                     <span class="bg-red-800 rounded text-white font-bold text-xs p-1 mr-2">必須</span>
-<input type="radio" id="is_flowing_from_source0" name="is_flowing_from_source" v-model="form.is_flowing_from_source" value="0">
+                                    <input type="radio" id="is_flowing_from_source0" name="is_flowing_from_source" v-model="form.is_flowing_from_source" value="0">
                                     <label for="is_flowing_from_source0"class="ml-2 mr-4">源泉掛け流しでない</label>
                                     <input type="radio" id="is_flowing_from_source1" name="is_flowing_from_source" v-model="form.is_flowing_from_source" value="1">
                                     <label for="is_flowing_from_source1"class="ml-2 mr-4">源泉掛け流しである</label>
@@ -279,7 +277,7 @@ const storeSpring = () => {
                                 <div v-if="errors.water_drawing_fee" class="text-red-600 text-sm">{{ errors.water_drawing_fee }}</div>
                                 <div class="p-2 w-full">
                                   <div class="relative">
-                                    <label for="photo" class="leading-7 text-sm text-gray-600">画像</label>
+                                    <label for="photo" class="leading-7 text-sm text-gray-600">画像（アップロード可能なファイル拡張子：jpg,jpeg,png）</label>
                                     <input type="file" id="photo" name="photo"  placeholder="100円/10L" @input="form.photo = $event.target.files[0]" class="w-full rounded py-1 px-3 leading-8">
                                   </div>
                                 </div>

@@ -1,12 +1,20 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, router } from '@inertiajs/vue3';
 
 defineProps({
   spring: Object,
   quality_name: String,
   photo_url: String,
+  prefecture: String
 })
+
+const deleteConfirm = (id) => {
+  console.log(id)
+  router.delete(`/springs/${id}`, {
+    onBefore: () => confirm('本当に削除しますか？'),
+  })
+}
 </script>
 
 <template>
@@ -21,18 +29,15 @@ defineProps({
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
           <div class="p-6 text-gray-900">
+            <Link class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 my-3 focus:outline-none hover:bg-indigo-600 rounded" as="button" :href="route('springs.edit', {spring: spring.id })">編集する</Link>
 
             <div class="max-w-screen-lg h-auto mx-auto bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-
-              <Link class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded" as="button" :href="route('springs.edit', {spring: spring.id })">編集する</Link>
-
-              <img v-if="photo_url"class="rounded-t-lg " :src="photo_url" alt="" />
-              <img v-else class="rounded-t-lg " src="/images/no_image.png" alt="" />
+              <img v-if="spring.photo === null" class="rounded-t-lg " src="/images/no_image.png" alt="" />
+              <img v-else class="rounded-t-lg " :src="photo_url" alt="" />
               <div class="p-5">
                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ spring.kana }}</p>
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ spring.name }}</h5>
                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ spring.detail_description }}</p>
-
 
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                   <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -42,7 +47,7 @@ defineProps({
                             住所
                         </th>
                         <td class="px-6 py-4">
-                          〒{{spring.postcode }}　{{ spring.region_id }}{{ spring.city }}{{ spring.address }}
+                          〒{{spring.postcode }}　{{ prefecture.name }}{{ spring.city }}{{ spring.address }}
                         </td>
                       </tr>
                       <tr class="border-b border-gray-200 dark:border-gray-700">
@@ -172,6 +177,7 @@ defineProps({
                     </tbody>
                   </table>
                 </div>
+                <button @click="deleteConfirm(spring.id)" class="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 my-3 focus:outline-none hover:bg-red-600 rounded">削除する</button>
               </div>
             </div>
           </div>
