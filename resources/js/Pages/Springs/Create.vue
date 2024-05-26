@@ -282,7 +282,7 @@ const storeSpring = () => {
                                   </div>
                                 </div>
                                 <div class="p-2 w-full">
-                                  <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">登録する</button>
+                                  <button class="flex mx-auto text-white bg-yellow-600 hover:bg-yellow-500 border-0 py-2 px-8 focus:outline-none rounded text-lg">登録する</button>
                                 </div>
                               </div>
                             </div>

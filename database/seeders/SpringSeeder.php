@@ -18,7 +18,7 @@ class SpringSeeder extends Seeder
         DB::table('springs')->insert([
             [
                 'name' => '湯泉郷 温泉館 湯招花',
-                'kana' => 'ｵﾝｾﾝｷｮｳ ｵﾝｾﾝｶﾝ ﾄｳｼｮｳｶ',
+                'kana' => 'オンセンキョウ　オンセンカン　トウショウカ',
                 'tel' => '0952642683',
                 'url' => 'https://toshoka.net/index.html',
                 'postcode' => '8400512',
@@ -61,7 +61,7 @@ class SpringSeeder extends Seeder
             ],
             [
                 'name' => '古湯温泉 ＯＮＣＲＩ / おんくり',
-                'kana' => 'ﾌﾙﾕｵﾝｾﾝ ｵﾝｸﾘ',
+                'kana' => 'フルユオンセン　オンクリ',
                 'tel' => '0952518111',
                 'url' => 'https://oncri.com/',
                 'postcode' => '8400501',
