@@ -28,7 +28,7 @@ Route::put('/springs/{spring}', [SpringController::class, 'update'])->middleware
 Route::delete('/springs/{spring}', [SpringController::class, 'destroy'])->middleware(['auth','can:admin'])->name('springs.destroy');
 Route::get('/springs/{spring}/edit', [SpringController::class, 'edit'])->middleware(['auth', 'can:admin'])->name('springs.edit');
 
-Route::post('/springs/{spring}/change-image', [SpringController::class, 'changeImage'])->middleware(['auth'])->name('change-image');
+Route::post('/springs/{spring}/update-image', [SpringController::class, 'updateImage'])->middleware(['auth'])->name('change-image');
 Route::delete('/springs/{spring}/delete-image', [SpringController::class, 'deleteImage'])->middleware(['auth'])->name('delete-image');
 
 

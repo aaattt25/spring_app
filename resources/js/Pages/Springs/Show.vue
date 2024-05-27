@@ -21,9 +21,9 @@ const deleteConfirm = (id) => {
   })
 }
 
-const changeImage = (id) => {
+const updateImage = (id) => {
   console.log('実行されました')
-  router.post(`/springs/${id}/change-image`, form)
+  router.post(`/springs/${id}/update-image`, form)
 }
 
 const deleteImage = (id) => {
@@ -41,34 +41,40 @@ const deleteImage = (id) => {
     <template #header>
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">温泉詳細</h2>
     </template>
+    <div v-if="$page.props.flash.message" class="bg-blue-300 text-white p-4">{{ $page.props.flash.message }}</div>
 
     <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div v-if="$page.props.flash.message" class="bg-blue-300 text-white p-4">{{ $page.props.flash.message }}</div>
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-          <div class="p-6 text-gray-900">
+          <div class="p-6 text-gray-900 flex flex-wrap">
+            <div class="p-2 m-1">
             <Link v-if="user_role === 'administrator'" class="flex ml-auto text-white bg-yellow-600 border-0 py-2 px-6 my-3 focus:outline-none hover:bg-yellow-500 rounded" as="button" :href="route('springs.edit', {spring: spring.id })">温泉情報を編集する</Link>
+            </div>
+            <div class="p-2 m-1">
+            <button v-if="user_role === 'administrator' && spring.photo !== null" @click="deleteImage(spring.id)" class="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 my-3 focus:outline-none hover:bg-red-600 rounded">温泉画像を削除する</button>
+            </div>
+            <div class="p-2 m-1">
+            <button v-if="user_role === 'administrator'" @click="deleteConfirm(spring.id)" class="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 my-3 focus:outline-none hover:bg-red-600 rounded">この温泉を削除する</button>
+            </div>
+          </div>
 
+          <div class="p-10 m-5 border border-solid border-yellow-600">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-600 dark:text-white text-center">新しい画像に変更する</h5>
 
-            <form @submit.prevent="changeImage(spring.id)" enctype="multipart/form-data">
-              <div class="p-2 w-full">
+            <form @submit.prevent="updateImage(spring.id)" enctype="multipart/form-data">
+              <p>手順１</p>
+              <div class="p-2 w-full pb-7">
                 <div class="relative">
-                  <label for="photo" class="leading-7 text-sm text-gray-600">画像を変更する（アップロード可能なファイル拡張子：jpg,jpeg,png）</label>
+                  <label for="photo" class="leading-7 text-gray-700">画像を選択する（アップロード可能なファイル拡張子：jpg,jpeg,png）</label>
                   <input type="file" id="photo" name="photo" @input="form.photo = $event.target.files[0]" class="w-full rounded py-1 px-3 leading-8">
                 </div>
               </div>
+              <p>手順2</p>
               <div class="p-2 w-full">
-                <button class="flex mx-auto text-white bg-yellow-600 hover:bg-yellow-500 border-0 py-2 px-8 focus:outline-none rounded text-lg">画像をアップロードする</button>
+                <button class="px-2 py-1 text-gray-500 border border-gray-500 font-semibold rounded hover:bg-yellow-100">画像をアップロードする</button>
               </div>
             </form>
-
-
-
-            <button v-if="user_role === 'administrator' && spring.photo !== null" @click="deleteImage(spring.id)" class="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 my-3 focus:outline-none hover:bg-red-600 rounded">画像を削除する</button>
-
-
-            <button v-if="user_role === 'administrator'" @click="deleteConfirm(spring.id)" class="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 my-3 focus:outline-none hover:bg-red-600 rounded">{{ spring.name }}を削除する</button>
-              </div>
+          </div>
 
             <div class="max-w-screen-lg h-auto mx-auto bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
               <img v-if="spring.photo === null" class="rounded-t-lg " src="/images/no_image.png" alt="" />

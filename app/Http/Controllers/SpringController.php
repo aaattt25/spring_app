@@ -195,23 +195,29 @@ class SpringController extends Controller
         ]);
     }
 
-    public function changeImage($id)
+    public function updateImage($id)
     {
         $spring = Spring::findOrFail($id);
+        $file = request()->file('photo');
+
+        if ($file === null)
+        {
+            return redirect()->route('springs.show', ['spring' => $spring->id]);
+        }
 
         Storage::delete('public/' . $spring->photo);
-
-        $file = request()->file('photo');
         $file_name = request()->file('photo')->getClientOriginalName();
         Storage::putFileAs('public/', $file, $file_name);
 
         $spring->photo = $file_name;
         $spring->save();
 
-        return to_route('springs.show', ['spring' => $spring->id])
-        ->with([
-            'message' => '画像を変更しました。',
-        ]);
+        // return to_route('springs.show', ['spring' => $spring->id])
+        // ->with([
+        //     'message' => '画像を変更しました。',
+        // ]);
+        return redirect()->route('springs.show', ['spring' => $spring->id])
+        ->with('message', '画像を変更しました。');
     }
 
     public function deleteImage(Spring $spring)
