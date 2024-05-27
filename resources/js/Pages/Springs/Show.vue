@@ -58,7 +58,7 @@ const deleteImage = (id) => {
             </div>
           </div>
 
-          <div class="p-10 m-5 border border-solid border-yellow-600">
+          <div v-if="user_role === 'administrator'" class="p-10 m-5 border border-solid border-yellow-600">
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-600 dark:text-white text-center">新しい画像に変更する</h5>
 
             <form @submit.prevent="updateImage(spring.id)" enctype="multipart/form-data">
