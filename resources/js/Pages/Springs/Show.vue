@@ -76,10 +76,10 @@ const deleteImage = (id) => {
             </form>
           </div>
 
-            <div class="max-w-screen-lg h-auto mx-auto bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <div class="max-w-screen-lg h-auto mx-auto mb-20 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
               <img v-if="spring.photo === null" class="rounded-t-lg " src="/images/no_image.png" alt="" />
               <img v-else class="rounded-t-lg " :src="photo_url" alt="" />
-              <div class="p-5">
+              <div class="p-5 mb-5">
                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ spring.kana }}</p>
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ spring.name }}</h5>
                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ spring.detail_description }}</p>

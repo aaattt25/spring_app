@@ -8,6 +8,8 @@ use App\Models\Quality;
 use App\Models\Prefecture;
 use App\Models\Region;
 use App\Models\Spring;
+// use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -20,9 +22,16 @@ class SpringController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $springs = Spring::select('id', 'name', 'kana','prefecture_id', 'city', 'quality_id','is_flowing_from_source', 'simple_description', 'photo')->get();
+
+        $springs = Spring::query()
+        ->select('id', 'name', 'kana','prefecture_id', 'city', 'quality_id','is_flowing_from_source', 'simple_description', 'photo')
+        ->where('prefecture_id', $request->prefecture_id)
+        ->where('quality_id', $request->quality_id)
+        ->where('is_flowing_from_source', $request->is_flowing_from_source)
+        ->get();
+
         $user_role = Auth::user()->role;
         $qualities = Quality::select('id', 'name')->get();
         $prefectures = Prefecture::select('id', 'name')->get();
