@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\SpringController;
+use App\Models\Spring;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,19 @@ use App\Http\Controllers\SpringController;
 |
 */
 
-Route::resource('springs', SpringController::class)->middleware(['auth', 'verified']);
+// Route::resource('springs', SpringController::class)->middleware(['auth', 'verified']);
+
+Route::get('/springs', [SpringController::class, 'index'])->middleware(['auth'])->name('springs.index');
+Route::post('/springs', [SpringController::class, 'store'])->middleware(['auth', 'can:admin'])->name('springs.store');
+Route::get('/springs/create', [SpringController::class, 'create'])->middleware(['auth','can:admin'])->name('springs.create');
+Route::get('/springs/{spring}', [SpringController::class, 'show'])->middleware(['auth'])->name('springs.show');
+Route::put('/springs/{spring}', [SpringController::class, 'update'])->middleware(['auth','can:admin'])->name('springs.update');
+Route::delete('/springs/{spring}', [SpringController::class, 'destroy'])->middleware(['auth','can:admin'])->name('springs.destroy');
+Route::get('/springs/{spring}/edit', [SpringController::class, 'edit'])->middleware(['auth', 'can:admin'])->name('springs.edit');
+
+Route::post('/springs/{spring}/update-image', [SpringController::class, 'updateImage'])->middleware(['auth'])->name('change-image');
+Route::delete('/springs/{spring}/delete-image', [SpringController::class, 'deleteImage'])->middleware(['auth'])->name('delete-image');
+
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -34,8 +47,8 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__.'/auth.php';

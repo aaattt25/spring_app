@@ -276,14 +276,9 @@ const updateSpring = (id) => {
                                   </div>
                                 </div>
                                 <div v-if="errors.water_drawing_fee" class="text-red-600 text-sm">{{ errors.water_drawing_fee }}</div>
-                                <!-- <div class="p-2 w-full">
-                                  <div class="relative">
-                                    <label for="photo" class="leading-7 text-sm text-gray-600">画像（アップロード可能なファイル拡張子：jpg,jpeg,png）</label>
-                                    <input type="file" id="photo" name="photo"  placeholder="100円/10L" @input="form.photo = $event.target.files[0]" class="w-full rounded py-1 px-3 leading-8">
-                                  </div>
-                                </div> -->
+
                                 <div class="p-2 w-full">
-                                  <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">登録する</button>
+                                  <button class="flex mx-auto text-white bg-yellow-600 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-500 rounded text-lg">更新する</button>
                                 </div>
                               </div>
                             </div>

@@ -8,8 +8,11 @@ use App\Models\Quality;
 use App\Models\Prefecture;
 use App\Models\Region;
 use App\Models\Spring;
+// use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class SpringController extends Controller
@@ -19,13 +22,46 @@ class SpringController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $springs = Spring::select('id', 'name', 'prefecture_id', 'city', 'quality_id', 'simple_description', 'photo')->get();
+
+
+        // $springs = Spring::query()
+        $springs = Spring::query();
+
+        $prefecture_id =  $request->prefecture_id;
+        $quality_id =  $request->quality_id;
+        $is_flowing_from_source =  $request->is_flowing_from_source;
+
+        $query = Spring::query();   // 初期化
+
+        if($prefecture_id)
+        {
+            $query->where('prefecture_id', $prefecture_id);
+        }
+
+        if($quality_id)
+        {
+            $query->where('quality_id', $quality_id);
+        }
+
+        if($is_flowing_from_source !== null)
+        {
+            $query->where('is_flowing_from_source', $is_flowing_from_source);
+        }
+
+        $springs = $query->get();
+        // ->where('prefecture_id', $request->prefecture_id)
+        // ->where('quality_id', $request->quality_id)
+        // ->where('is_flowing_from_source', $request->is_flowing_from_source)
+        // ->get();
+
+        $user_role = Auth::user()->role;
         $qualities = Quality::select('id', 'name')->get();
         $prefectures = Prefecture::select('id', 'name')->get();
         return Inertia::render('Springs/Index', [
             'springs' => $springs,
+            'user_role' => $user_role,
             'qualities' => $qualities,
             'prefectures' => $prefectures
         ]);
@@ -103,13 +139,15 @@ class SpringController extends Controller
      */
     public function show(Spring $spring)
     {
+        $user_role = Auth::user()->role;
         $prefecture = Prefecture::find($spring->prefecture_id);
         $quality_name = $spring->quality->name;
         return Inertia::render('Springs/Show', [
             'spring' => $spring,
-            'prefecture' => $prefecture->name,
+            'prefecture_name' => $prefecture->name,
             'quality_name' => $quality_name,
-            'photo_url' => asset('/storage/' . $spring->photo)
+            'photo_url' => asset('/storage/' . $spring->photo),
+            'user_role' => $user_role
         ]);
     }
 
@@ -187,6 +225,46 @@ class SpringController extends Controller
         return to_route('springs.index')
         ->with([
             'message' => '削除しました。',
+        ]);
+    }
+
+    public function updateImage($id)
+    {
+        $spring = Spring::findOrFail($id);
+        $file = request()->file('photo');
+
+        if ($file === null)
+        {
+            return redirect()->route('springs.show', ['spring' => $spring->id]);
+        }
+
+        Storage::delete('public/' . $spring->photo);
+        $file_name = request()->file('photo')->getClientOriginalName();
+        Storage::putFileAs('public/', $file, $file_name);
+
+        $spring->photo = $file_name;
+        $spring->save();
+
+        // return to_route('springs.show', ['spring' => $spring->id])
+        // ->with([
+        //     'message' => '画像を変更しました。',
+        // ]);
+        return redirect()->route('springs.show', ['spring' => $spring->id])
+        ->with('message', '画像を変更しました。');
+    }
+
+    public function deleteImage(Spring $spring)
+    {
+        // dd($spring);
+        Storage::delete('public/' . $spring->photo);
+
+        $spring->photo = null;
+        $spring->save();
+
+
+        return to_route('springs.show', ['spring' => $spring->id])
+        ->with([
+            'message' => '画像を削除しました。',
         ]);
     }
 }
