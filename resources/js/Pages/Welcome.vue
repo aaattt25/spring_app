@@ -24,8 +24,6 @@ defineProps({
             <h1 class="text-5xl font-bold leading-tight mb-4">温泉検索へようこそ
             </h1>
             <p class="text-lg text-gray-300 mb-8">Discover amazing onsen and enjoy your onsen life.</p>
-            <!-- <a href="#" class="bg-yellow-400 text-gray-900 hover:bg-yellow-300 py-2 px-6 rounded-full text-lg font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">Get Started</a>
-            <a href="#" class="bg-yellow-400 text-gray-900 hover:bg-yellow-300 py-2 px-6 rounded-full text-lg font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">Get Started</a> -->
 
 
         <div v-if="canLogin" class="sm:fixed sm:top-0 sm:right-0 p-6 text-right">

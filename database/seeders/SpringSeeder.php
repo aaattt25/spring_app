@@ -18,7 +18,7 @@ class SpringSeeder extends Seeder
         DB::table('springs')->insert([
             [
                 'name' => '湯泉郷 温泉館 湯招花',
-                'kana' => 'オンセンキョウ　オンセンカン　トウショウカ',
+                'kana' => 'オンセンキョウオンセンカントウショウカ',
                 'tel' => '0952642683',
                 'url' => 'https://toshoka.net/index.html',
                 'postcode' => '8400512',
@@ -34,26 +34,12 @@ class SpringSeeder extends Seeder
                 'has_restaurant' => 1,
                 'can_drop_by' => 1,
                 'is_inn' => 0,
-                'fee' => '・本館
-                ・入館料
-                大人：1400円、子供：700円（小学生以下）
-                ・別料金
-                家族風呂：1000円〜/60分
-                ====================
-                ・離れ
-                基本料金
-                5300円 〜/ 90分　（２名様 ・１室料金）
-                別料金
-                ２名以上追加料金
-                大人：1400円、子供：700円
-                延長料金
-                時間延長３０分につ 2000円',
+                'fee' => '【本館】入館料:大人1400円、子供700円（小学生以下）【別料金】家族風呂：1000円〜/60分',
                 'is_flowing_from_source' => 1,
                 'has_bedrock_bath' => 0,
                 'has_sauna' => 1,
                 'has_parking' => 1,
-                'business_hours' => '営業時間 10：00～20：00
-                〈-HANARE- 離れの最終受付〉 18：30',
+                'business_hours' => '営業時間 10：00～20：00〈-HANARE- 離れの最終受付〉 18：30',
                 'holiday'=> '毎週 火曜日・水曜日 　※祝日の場合は営業',
                 'efficacy' => '	神経痛、筋肉痛、関節痛、五十肩、運動麻痺、間接のこわばり、打ち身、くじき、慢性消化器病、痔疾、冷え性、病後回復期、疲労回復、健康増進',
                 'has_water_drawing_place' => 1,
@@ -61,7 +47,7 @@ class SpringSeeder extends Seeder
             ],
             [
                 'name' => '古湯温泉 ＯＮＣＲＩ / おんくり',
-                'kana' => 'フルユオンセン　オンクリ',
+                'kana' => 'フルユオンセンオンクリ',
                 'tel' => '0952518111',
                 'url' => 'https://oncri.com/',
                 'postcode' => '8400501',
@@ -72,7 +58,7 @@ class SpringSeeder extends Seeder
                 'quality_id' => 11,
                 'photo' => null,
                 'simple_description' => '日常から少し離れ、至福のラジウム泉ぬる湯めぐり。',
-                'detail_description' => '古湯温泉は別名「美人湯」として、古くより慰労と湯治で親しまれてきた名湯です。湯処「SHIORI／しおり」では1日43トンあまりの豊富な湧出量の自家源泉を使用し、「ぬる湯」として知られるとおり泉温は38℃と少しぬるめ。身体に負担がかからず、リラックス効果がある、長時間浸かることができることから湯治に最適であると言われています。',
+                'detail_description' => '古湯温泉は古くから湯治で親しまれてきた名湯です。「ぬる湯」として知られており泉温は38℃と少しぬるめ。身体に負担がかからず、リラックス効果がある、長時間浸かることができることから湯治に最適であると言われています。',
                 'has_restaurant' => 1,
                 'can_drop_by' => 1,
                 'is_inn' => 1,
