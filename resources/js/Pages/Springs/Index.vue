@@ -87,6 +87,8 @@ const searchSpring = () => {
           </section>
           <!-- 温泉一覧・検索結果 -->
           <section class="text-gray-600 body-font px-8 md:px-20">
+            <div v-if="springs.length === 0" class="bg-white overflow-hidden shadow-sm sm:rounded-lg md:flex flex-row p-6 md:p-20 mb-4 text-xl text-gray-900">該当する温泉施設はありません</div>
+
             <div v-for="spring in springs" :key="spring.id" class="container mb-10 md:mb-20 mx-auto flex px-5 pt-20 sm:p-8 md:flex-row flex-col items-center bg-white shadow sm:rounded-lg">
               <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
                 <img v-if="spring.photo" :src="'/storage/' + spring.photo" alt="" lass="rounded-t-lg" />
