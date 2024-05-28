@@ -115,10 +115,11 @@ const showingNavigationDropdown = ref(false);
                     class="sm:hidden"
                 >
                     <div class="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                            Dashboard
-                        </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('springs.index')" :active="route().current('springs.index')">
+                            温泉一覧
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink v-if="$page.props.auth.user && $page.props.auth.user.role === 'administrator'"
+                            :href="route('springs.create')" :active="route().current('springs.create')">
                             温泉一覧
                         </ResponsiveNavLink>
                     </div>
