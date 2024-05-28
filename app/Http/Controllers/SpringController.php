@@ -25,12 +25,36 @@ class SpringController extends Controller
     public function index(Request $request)
     {
 
-        $springs = Spring::query()
-        ->select('id', 'name', 'kana','prefecture_id', 'city', 'quality_id','is_flowing_from_source', 'simple_description', 'photo')
-        ->where('prefecture_id', $request->prefecture_id)
-        ->where('quality_id', $request->quality_id)
-        ->where('is_flowing_from_source', $request->is_flowing_from_source)
-        ->get();
+
+        // $springs = Spring::query()
+        $springs = Spring::query();
+
+        $prefecture_id =  $request->prefecture_id;
+        $quality_id =  $request->quality_id;
+        $is_flowing_from_source =  $request->is_flowing_from_source;
+
+        $query = Spring::query();   // 初期化
+
+        if($prefecture_id)
+        {
+            $query->where('prefecture_id', $prefecture_id);
+        }
+
+        if($quality_id)
+        {
+            $query->where('quality_id', $quality_id);
+        }
+
+        if($is_flowing_from_source !== null)
+        {
+            $query->where('is_flowing_from_source', $is_flowing_from_source);
+        }
+
+        $springs = $query->get();
+        // ->where('prefecture_id', $request->prefecture_id)
+        // ->where('quality_id', $request->quality_id)
+        // ->where('is_flowing_from_source', $request->is_flowing_from_source)
+        // ->get();
 
         $user_role = Auth::user()->role;
         $qualities = Quality::select('id', 'name')->get();
