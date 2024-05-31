@@ -47,7 +47,7 @@ const searchSpring = () => {
             <div class="mx-auto">
               <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg md:flex flex-row p-6 md:p-20">
                 <div class="basis-1/2"><img class="rounded-t-lg" src="/images/map.png" alt="日本地図" /></div>
-                <div class="basis-1/2 bg-pink-300">
+                <div class="basis-1/2 bg-orange-100 p-10">
                   <form @submit.prevent="searchSpring">
                     <div class="p-2 w-full">
                       <div class="relative">
@@ -77,8 +77,8 @@ const searchSpring = () => {
                         <label for="is_flowing_from_source1"class="ml-2 mr-4">源泉掛け流しである</label>
                       </div>
                     </div>
-                    <div class="p-2 w-full">
-                      <button class="flex mx-auto text-white bg-red-600 hover:bg-red-500 border-0 py-2 px-8 focus:outline-none rounded text-lg">検索する</button>
+                    <div class="p-2 w-full mt-8">
+                      <button class="flex mx-auto text-white bg-yellow-600  hover:bg-yellow-500 border-0 py-2 px-8 focus:outline-none rounded text-lg">検索する</button>
                     </div>
                   </form>
                 </div>

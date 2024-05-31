@@ -20,7 +20,7 @@ const showingNavigationDropdown = ref(false);
                         <div class="flex">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
-                                <Link :href="route('dashboard')">
+                                <Link :href="route('springs.index')">
                                     <!-- <ApplicationLogo class="block h-9 w-auto fill-current text-gray-800"/> -->
                                     <ApplicationLogo  class="w-20 h-20 fill-current text-gray-500" />
                                 </Link>
@@ -28,11 +28,12 @@ const showingNavigationDropdown = ref(false);
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
-                                </NavLink>
                                 <NavLink :href="route('springs.index')" :active="route().current('springs.index')">
-                                    温泉一覧
+                                    温泉検索
+                                </NavLink>
+                                <NavLink v-if="$page.props.auth.user && $page.props.auth.user.role === 'administrator'"
+                                    :href="route('springs.create')" :active="route().current('springs.create')">
+                                    温泉登録
                                 </NavLink>
                             </div>
                         </div>
@@ -114,10 +115,11 @@ const showingNavigationDropdown = ref(false);
                     class="sm:hidden"
                 >
                     <div class="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                            Dashboard
-                        </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('springs.index')" :active="route().current('springs.index')">
+                            温泉一覧
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink v-if="$page.props.auth.user && $page.props.auth.user.role === 'administrator'"
+                            :href="route('springs.create')" :active="route().current('springs.create')">
                             温泉一覧
                         </ResponsiveNavLink>
                     </div>
