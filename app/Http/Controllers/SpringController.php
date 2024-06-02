@@ -6,7 +6,7 @@ use App\Http\Requests\StoreSpringRequest;
 use App\Http\Requests\UpdateSpringRequest;
 use App\Models\Quality;
 use App\Models\Prefecture;
-use App\Models\Region;
+// use App\Models\Region;
 use App\Models\Spring;
 // use Illuminate\Http\Client\Request;
 use Illuminate\Http\Request;
@@ -14,6 +14,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class SpringController extends Controller
 {
@@ -94,6 +95,7 @@ class SpringController extends Controller
     {
         $file = request()->file('photo');
         $file_name = request()->file('photo')->getClientOriginalName();  // ファイル名とれた
+        $file_name = Str::random(16) . $file_name;
         Storage::putFileAs('public/', $file, $file_name);
 
         Spring::create([
@@ -240,6 +242,7 @@ class SpringController extends Controller
 
         Storage::delete('public/' . $spring->photo);
         $file_name = request()->file('photo')->getClientOriginalName();
+        $file_name = Str::random(16) . $file_name;
         Storage::putFileAs('public/', $file, $file_name);
 
         $spring->photo = $file_name;
