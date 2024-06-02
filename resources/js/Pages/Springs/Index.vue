@@ -29,11 +29,12 @@ const searchSpring = () => {
           <h2 class="font-semibold text-xl text-gray-800 leading-tight">温泉一覧</h2>
       </template>
 
+        <!-- フラッシュメッセージ -->
+        <div v-if="$page.props.flash.message" class="bg-blue-300 text-white p-4">
+          {{ $page.props.flash.message }}
+        </div>
+
         <div class="max-w-7xl mx-auto bg-[url('/images/background.jpg')]">
-          <!-- フラッシュメッセージ -->
-          <div v-if="$page.props.flash.message" class="bg-blue-300 text-white p-4">
-            {{ $page.props.flash.message }}
-          </div>
           <!-- 新規温泉登録ボタン -->
           <section class="text-gray-600 body-font px-8 md:px-20 mb-20">
             <div v-if="user_role === 'administrator'" class="mx-auto flex pt-100 md:flex-row flex-col items-center">
