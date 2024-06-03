@@ -22,7 +22,7 @@ const searchSpring = () => {
 </script>
 
 <template>
-    <Head title="温泉一覧" />
+    <Head title="温泉検索" />
 
     <AuthenticatedLayout>
       <template #header>

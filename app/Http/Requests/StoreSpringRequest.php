@@ -27,14 +27,14 @@ class StoreSpringRequest extends FormRequest
             'name' => ['required', 'max:50'],
             'kana' => ['required', 'regex:/\A[ァ-ヴー]+\z/u','max:50'],  // カタカナ
             'tel' => ['required', 'max:20', 'regex:/^[0-9-]+$/'],    // 半角数字　＋　ハイフン
-            'url' => ['url'],
+            'url' => ['nullable', 'url'],
             'postcode' => ['required', 'max:7'],
             // 'region_id' => ['required'],
             'prefecture_id' => ['required'],
             'city' => ['required'],
             'address' => ['required','max:100'],
             'quality_id' => ['required'],
-            'photo' => 'image|mimes:jpg,jpeg,png|max:8192',  // 画像、サイズ
+            'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:8192',  // 画像、サイズ
             'simple_description' => ['required','max:255'],
             'detail_description' => ['required','max:1000'],
             'has_restaurant' => ['required'],
