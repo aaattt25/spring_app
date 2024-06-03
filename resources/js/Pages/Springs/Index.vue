@@ -26,7 +26,7 @@ const searchSpring = () => {
 
     <AuthenticatedLayout>
       <template #header>
-          <h2 class="font-semibold text-xl text-gray-800 leading-tight">温泉一覧</h2>
+          <h2 class="font-semibold text-xl text-gray-800 leading-tight">温泉検索</h2>
       </template>
 
         <!-- フラッシュメッセージ -->
