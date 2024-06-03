@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('kana');
             $table->string('tel');
-            $table->string('url')->nullable();;
+            $table->string('url')->nullable();
             $table->string('postcode');
             // $table->integer('region_id')->constrained()->onUpdate('cascade');
             $table->integer('prefecture_id')->constrained()->onUpdate('cascade');

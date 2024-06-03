@@ -27,7 +27,7 @@ class UpdateSpringRequest extends FormRequest
             'name' => ['required', 'max:50'],
             'kana' => ['required', 'regex:/\A[ァ-ヴー]+\z/u','max:50'],
             'tel' => ['required', 'max:20', 'regex:/^[0-9-]+$/'],
-            'url' => ['url'],
+            'url' => ['nullable', 'url'],
             'postcode' => ['required', 'max:7'],
             'prefecture_id' => ['required'],
             'city' => ['required'],

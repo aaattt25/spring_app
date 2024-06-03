@@ -26,8 +26,6 @@ class SpringController extends Controller
     public function index(Request $request)
     {
 
-
-        // $springs = Spring::query()
         $springs = Spring::query();
 
         $prefecture_id =  $request->prefecture_id;
@@ -52,10 +50,6 @@ class SpringController extends Controller
         }
 
         $springs = $query->get();
-        // ->where('prefecture_id', $request->prefecture_id)
-        // ->where('quality_id', $request->quality_id)
-        // ->where('is_flowing_from_source', $request->is_flowing_from_source)
-        // ->get();
 
         $user_role = Auth::user()->role;
         $qualities = Quality::select('id', 'name')->get();
@@ -77,7 +71,6 @@ class SpringController extends Controller
     {
         $prefectures = Prefecture::select('id', 'name')->get();
         $qualities = Quality::select('id', 'name')->get();
-        // $regions = Region::select('id', 'name')->get();
 
         return Inertia::render('Springs/Create', [
             'prefectures' => $prefectures,
@@ -94,9 +87,14 @@ class SpringController extends Controller
     public function store(StoreSpringRequest $request)
     {
         $file = request()->file('photo');
-        $file_name = request()->file('photo')->getClientOriginalName();  // ファイル名とれた
-        $file_name = Str::random(16) . $file_name;
-        Storage::putFileAs('public/', $file, $file_name);
+        if ($file !== null){
+            $file_name = request()->file('photo')->getClientOriginalName();
+            $file_name = Str::random(16) . $file_name;
+            Storage::putFileAs('public/', $file, $file_name);
+        }else{
+            $file_name = null;
+        }
+
 
         Spring::create([
             'name' =>$request->name,
@@ -220,7 +218,6 @@ class SpringController extends Controller
      */
     public function destroy(Spring $spring)
     {
-        // Storage::delete($spring->photo);
         Storage::delete('public/' . $spring->photo);
         $spring->delete();
 
@@ -248,17 +245,12 @@ class SpringController extends Controller
         $spring->photo = $file_name;
         $spring->save();
 
-        // return to_route('springs.show', ['spring' => $spring->id])
-        // ->with([
-        //     'message' => '画像を変更しました。',
-        // ]);
         return redirect()->route('springs.show', ['spring' => $spring->id])
         ->with('message', '画像を変更しました。');
     }
 
     public function deleteImage(Spring $spring)
     {
-        // dd($spring);
         Storage::delete('public/' . $spring->photo);
 
         $spring->photo = null;
