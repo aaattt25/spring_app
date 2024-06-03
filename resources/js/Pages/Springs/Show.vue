@@ -170,8 +170,8 @@ const deleteImage = (id) => {
                           立ち寄り湯
                         </td>
                         <td class="px-6 py-4">
-                          <span v-if="spring.is_inn === 0">x</span>
-                          <span v-if="spring.is_inn === 1">○</span>
+                          <span v-if="spring.can_drop_by === 0">x</span>
+                          <span v-if="spring.can_drop_by === 1">○</span>
                         </td>
                       </tr>
                       <tr>
