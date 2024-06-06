@@ -36,7 +36,7 @@ const searchSpring = () => {
 
         <div class="max-w-7xl mx-auto bg-[url('/images/background.jpg')]">
           <!-- 新規温泉登録ボタン -->
-          <section class="text-gray-600 body-font px-8 md:px-20 mb-20">
+          <section class="text-gray-600 body-font px-8 mb-8 md:px-20 md:mb-12">
             <div v-if="user_role === 'administrator'" class="mx-auto flex pt-100 md:flex-row flex-col items-center">
               <Link class="flex ml-auto text-white border-0 my-20 py-2 px-6 focus:outline-none bg-yellow-600  hover:bg-yellow-500 rounded" as="button" :href="route('springs.create')">
                 新規温泉登録
@@ -44,11 +44,11 @@ const searchSpring = () => {
             </div>
           </section>
           <!-- 温泉検索日本地図 -->
-          <section class="text-gray-600 body-font px-8 md:px-20 mb-20">
+          <section class="text-gray-600 body-font px-0 mb-5 md:px-20 md:mb-20">
             <div class="mx-auto">
               <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg md:flex flex-row p-6 md:p-20">
-                <div class="basis-1/2"><img class="rounded-t-lg" src="/images/map.png" alt="日本地図" /></div>
-                <div class="basis-1/2 bg-orange-100 p-10">
+                <div class="basis-1/2 mb-5 md:mb-0"><img class="rounded-t-lg" src="/images/map.png" alt="日本地図" /></div>
+                <div class="basis-1/2 flex justify-center bg-orange-100 py-5 md:p-10 md:py-0">
                   <form @submit.prevent="searchSpring">
                     <div class="p-2 w-full">
                       <div class="relative">
@@ -73,13 +73,13 @@ const searchSpring = () => {
                     <div class="p-2 w-full">
                       <div class="relative">
                         <input type="radio" id="is_flowing_from_source0" name="is_flowing_from_source" v-model="form.is_flowing_from_source" value="0">
-                        <label for="is_flowing_from_source0"class="ml-2 mr-4">源泉掛け流しでない</label>
+                        <label for="is_flowing_from_source0"class="ml-2 mr-4">源泉掛け流しでない</label><br>
                         <input type="radio" id="is_flowing_from_source1" name="is_flowing_from_source" v-model="form.is_flowing_from_source" value="1">
                         <label for="is_flowing_from_source1"class="ml-2 mr-4">源泉掛け流しである</label>
                       </div>
                     </div>
                     <div class="p-2 w-full mt-8">
-                      <button class="flex mx-auto text-white bg-yellow-600  hover:bg-yellow-500 border-0 py-2 px-8 focus:outline-none rounded text-lg">検索する</button>
+                      <button class="flex mx-auto mb-7 text-white bg-yellow-600  hover:bg-yellow-500 border-0 py-2 px-8 focus:outline-none rounded text-lg">検索する</button>
                     </div>
                   </form>
                 </div>
@@ -87,7 +87,7 @@ const searchSpring = () => {
             </div>
           </section>
           <!-- 温泉一覧・検索結果 -->
-          <section class="text-gray-600 body-font px-8 md:px-20">
+          <section class="text-gray-600 body-font px-0 md:px-20">
             <div v-if="springs.length === 0" class="bg-white overflow-hidden shadow-sm sm:rounded-lg md:flex flex-row p-6 md:p-20 mb-4 text-xl text-gray-900">該当する温泉施設はありません</div>
 
             <div v-for="spring in springs" :key="spring.id" class="container mb-10 md:mb-20 mx-auto flex px-5 pt-20 sm:p-8 md:flex-row flex-col items-center bg-white shadow sm:rounded-lg">
